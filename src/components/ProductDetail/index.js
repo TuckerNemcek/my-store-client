@@ -10,7 +10,6 @@ class ProductDetail extends Component {
 
   componentDidMount() {
       // Fetch data for ONE product
-      console.log(this.props)
       const id = this.props.match.params.id
     
       fetch(`http://localhost:4000/api/products/${id}`)
@@ -29,7 +28,6 @@ class ProductDetail extends Component {
   render() {
       return (
           <div>
-              <h2>Welcome to Product Detail</h2>
               <Card>
                   <h2>{this.state.product.name}</h2>
                   <img src={this.state.product.img_url} alt="product" />
