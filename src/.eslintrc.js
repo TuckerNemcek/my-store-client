@@ -35,5 +35,11 @@ module.exports = {
             'error',
             'never'
         ]
-    }
+    },
+    overrides: [{
+        'files': ['*.js'],
+         'rules': {
+              'no-debugger': 'off'
+      }
+      }]
 }

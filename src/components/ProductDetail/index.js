@@ -11,7 +11,7 @@ class ProductDetail extends Component {
   componentDidMount() {
       // Fetch data for ONE product
       const id = this.props.match.params.id
-    
+      
       fetch(`http://localhost:4000/api/products/${id}`)
           .then(res => res.json())
           .then(data => {
@@ -26,6 +26,7 @@ class ProductDetail extends Component {
   }
 
   render() {
+      console.log('this is your props: ', this.props)
       return (
           <div>
               <Card>

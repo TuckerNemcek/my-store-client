@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom'
 import Card from '../../Card'
 
 const ProductCard = ({ name, img_url, price, description, id}) => {
+    debugger
     return (
-        <Link to ={`/products/${id}`}>
+        <Link to={`/products/${id}`}>
             <Card>
                 <h2>{name}</h2>
                 <img classame={styles.image} src={img_url} alt='product_image'/>
