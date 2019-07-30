@@ -25,19 +25,45 @@ class ProductDetail extends Component {
           })
   }
 
-  render() {
-      console.log('this is your props: ', this.props)
-      return (
-          <div>
-              <Card>
-                  <h2>{this.state.product.name}</h2>
-                  <img src={this.state.product.img_url} alt="product" />
-                  <p>{this.state.product.description}</p>
-                  <h3>Price: ${this.state.product.price / 100}.00</h3>
-              </Card>
-          </div>
-      )
-  }
+
+initiateStripeCheckout = async () => {
+    const stripe = window.Stripe('pk_test_HOGXNg6DRMrxmbo2IECX8vH600BwcFgpGs')
+
+      
+    try {
+        // Initiate checkout session to get session id
+        const response = await fetch('http://localhost:4000/api/checkout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+        const data = await response.json()
+        const sessionId = data.session.id
+      
+        // Redirect to checkout
+        const result = await stripe.redirectToCheckout({ sessionId })
+      
+    } catch (error) {
+        console.log('STRIPE ERROR', error)
+    }
+}
+
+
+render() {
+    return (
+        <div>
+            <Card>
+                <h2>{this.state.product.name}</h2>
+                <img src={this.state.product.img_url} alt="product" />
+                <p>{this.state.product.description}</p>
+                <h3>Price: ${this.state.product.price / 100}.00</h3>
+                <button onClick={this.initiateStripeCheckout}>Purchase</button>
+            </Card>
+        </div>
+    )
+}
 }
 
 export default ProductDetail

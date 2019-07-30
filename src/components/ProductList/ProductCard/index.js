@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import Card from '../../Card'
 
 const ProductCard = ({ name, img_url, price, description, id}) => {
-    debugger
     return (
         <Link to={`/products/${id}`}>
             <Card>
